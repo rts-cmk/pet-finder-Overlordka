@@ -1,6 +1,23 @@
+@use 'variables' as var
+
+
 *
     box-sizing: border-box
+    font-family: var.$primary-font
 
 body
     margin: 0
     padding: 0
+
+h1, h2, h3, h4, h5, h6
+    font-family: var.$primary-font
+    color: var.$primary-title-color
+    font-weight: 900
+
+p
+    color: var.$primary-text-color
+
+a
+    text-decoration: none
+    color: var.$primary-title-color
+    cursor: pointer
