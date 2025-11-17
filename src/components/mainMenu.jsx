@@ -1,7 +1,11 @@
-import "mainMenu.sass"
+import "./MainMenu.sass"
 
-export default function mainMenu() {
+export default function MainMenu() {
     return(
-        <></> 
+        <>
+        <h2>
+            mainMenu
+        </h2>
+        </> 
     )
 }

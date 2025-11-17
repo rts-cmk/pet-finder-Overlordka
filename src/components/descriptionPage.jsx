@@ -1,7 +1,11 @@
-import "descriptionPage.sass"
+import "./DescriptionPage.sass"
 
-export default function descriptionPage() {
+export default function DescriptionPage() {
     return(
-        <></> 
+        <>
+        <h2>
+            descriptionPage
+        </h2>
+        </> 
     )
 }

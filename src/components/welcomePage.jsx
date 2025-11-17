@@ -1,7 +1,9 @@
-import "welcomePage.sass"
+import "./WelcomePage.sass"
 
-export default function welcomePage() {
+export default function WelcomePage() {
     return(
-        <></> 
+        <h2>
+            welcomePage
+        </h2>
     )
 }
