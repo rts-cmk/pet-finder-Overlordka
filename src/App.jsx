@@ -2,17 +2,28 @@
 import MainMenu from "./components/MainMenu.jsx"
 import WelcomePage from "./components/WelcomePage.jsx"
 import DescriptionPage from "./components/DescriptionPage.jsx"
-import { Routes, Route } from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import "./style/main.sass"
 
 function App() {
 
+  const browserRouter = createBrowserRouter([
+    {
+      path: '/',
+      element: <WelcomePage />
+    },
+    {
+      path: '/home',
+      element: <MainMenu />,
+    },
+    {
+      path: '/description/:id',
+      element: <DescriptionPage />
+    }
+  ])
+
   return (
-    <Routes>
-      <Route path="/" element={<WelcomePage />}/>
-      <Route path="/home" element={<MainMenu />}/>
-      <Route path="/description" element={<DescriptionPage />}/>
-    </Routes>
+    <RouterProvider router={browserRouter} />
   )
 }
 

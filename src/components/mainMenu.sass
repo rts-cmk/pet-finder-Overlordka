@@ -85,19 +85,90 @@
         border-radius: 20px
         color: var.$primary-text-color
         font-weight: 700
-        box-shadow: var.$shadow-color 5px 5px 15px, var.$button-white-color -10px -10px 10px 
+        box-shadow: var.$shadow-color 5px 5px 15px, var.$button-white-color -10px -10px 10px
 
 
+.main
+    margin-top: 50px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    margin-bottom: 170px
+    gap: 40px
+
+.sec-desc
+    margin: 0 20px
+    padding-right: 20px
+    border-radius: 25px
+    display: flex
+    flex-direction: column
+    box-shadow: var.$shadow-color 10px 10px 15px, var.$button-white-color -10px -10px 10px 
+    position: relative
+
+
+    &_btn
+        all: unset
+        cursor: pointer
+        display: flex
+        gap: 10px
+        
+
+    &_img
+        height: 150px
+
+    &_h2
+        font-size: 20px
+        margin-bottom: 0
+
+    &_div-loc
+        display: flex
+        align-items: center
+        gap: 7px
+
+    &_svg-loc
+        fill: var.$svg-purple-color
+
+    &_p-loc
+        font-size: 12px
+
+    &_p
+        margin-top: 0
+        font-size: 14px
+        color: var.$primary-title-color
+
+    &_btn-like
+        all: unset
+        cursor: pointer
+        display: flex 
+        justify-content: center 
+        align-items: center 
+        border-radius: 50% 
+        width: 25px 
+        height: 25px 
+        position: absolute
+        top: 20px
+        right: 20px
+        box-shadow: var.$shadow-color 10px 10px 15px, var.$button-white-color -10px -10px 10px  
+
+
+    &_svg-like
+        width: 12px
+        fill: var.$svg-grey-color
+
+    
+.filled
+    fill: var.$button-red-color
 
 
 .footer
-    position: absolute
+    position: fixed
     bottom: 0
     width: 100%
     padding-bottom: 50px
     border-top-left-radius: 25px
     border-top-right-radius: 25px
     box-shadow: var.$button-white-color -10px -10px 10px 
+    background-color: var.$primary-background-color
 
     &_ul
         list-style-type: none
