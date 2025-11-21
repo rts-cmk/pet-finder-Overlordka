@@ -1,0 +1,64 @@
+@use "../style/variables" as var
+
+.sec-info
+    background-repeat: no-repeat
+    background-size: 100%
+    background-image: url("../public/background.svg")
+    padding-top: 380px
+
+    &_img
+        right: 20px
+        top: 131px
+        height: 250px
+        position: absolute
+
+    &_art-info
+        background-color: var.$primary-background-color
+        padding: 1px 20px
+        border-top-left-radius: 25px
+        border-top-right-radius: 25px
+
+    &_h2
+        margin-bottom: 0
+
+    &_div-loc
+        display: flex
+        align-items: center
+        gap: 7px
+
+    &_svg-loc
+        fill: var.$svg-purple-color
+
+    &_div-svg
+        width: 45px
+        height: 45px
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 50%
+        box-shadow: var.$shadow-color 10px 10px 15px, var.$button-white-color -10px -10px 10px 
+
+    &_div-type
+        display: flex
+        gap: 20px
+
+    &_p-type
+        color: var.$primary-title-color
+        margin-right: 10%
+
+    &_p
+        line-height: 1.6
+        margin-bottom: 120px
+
+    &_link
+        font-weight: 500
+        font-size: 16px
+        text-align: center
+        background-color: var.$button-purple-color
+        color: var.$button-white-color
+        padding: 1.5vh 40vw
+        border-radius: 17vw
+        box-shadow: var.$button-purple-shadow-color 10px 10px 10px, var.$button-white-color -10px -10px 10px
+
+.up::first-letter 
+    text-transform: uppercase 

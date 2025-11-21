@@ -1,0 +1,31 @@
+@use "../style/variables" as var
+    
+.welcome-sec
+    display: flex
+    align-items: center
+    justify-content: center
+    text-align: center
+    flex-direction: column
+    padding-top: 30px
+
+    &_text-art
+        padding: 30px 35px  
+
+    &_h2
+        font-size: 20px
+
+    &_p
+        font-size: 16px
+
+    &_link
+        position: absolute
+        margin: 0 auto
+        bottom: 8vh
+        font-weight: 500
+        font-size: 16px
+        text-align: center
+        background-color: var.$button-purple-color
+        color: var.$button-white-color
+        padding: 1.5vh 40vw
+        border-radius: 17vw
+        box-shadow: var.$button-purple-shadow-color 10px 10px 10px, var.$button-white-color -10px -10px 10px 

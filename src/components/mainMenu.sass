@@ -1,0 +1,206 @@
+@use "../style/variables" as var
+    
+.header-main
+    display: block
+
+
+    &_sec
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin: 50px 20px
+
+    &_div
+        display: flex
+
+    &_btn-img
+        all: unset
+        cursor: pointer
+        width: 50px
+        height: 50px
+        overflow: hidden
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 50%
+        box-shadow: var.$shadow-color 5px 5px 15px, var.$button-white-color -10px -10px 10px 
+
+    &_corrector
+        overflow: hidden
+        width: 45px
+        height: 45px
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 50%
+        
+    &_img
+        width: 110%
+
+    &_location
+        display: flex
+        align-items: center
+        padding-left: 20px
+        gap: 5px
+
+    &_location-svg 
+        fill: var.$button-purple-color
+
+    &_p
+        color: var.$primary-title-color
+
+    &_fold-out-btn
+        all: unset
+        cursor: pointer
+        padding-top: 5px
+    
+    &_fold-svg
+        fill: var.$button-purple-color
+
+    &_bell-btn
+        all: unset
+        width: 50px
+        height: 50px
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 50%
+        box-shadow: var.$shadow-color 5px 5px 15px, var.$button-white-color -10px -10px 10px 
+
+    &_bell-svg
+        stroke: var.$svg-purple-color
+        width: 25px
+        height: 25px
+
+    &_ul
+        list-style-type: none
+        padding-inline-start: 0
+        display: flex
+        gap: 20px
+        margin: 20px
+
+    &_li-btn-ctgrs
+        all: unset
+        padding: 5px 20px
+        border-radius: 20px
+        color: var.$primary-text-color
+        font-weight: 700
+        box-shadow: var.$shadow-color 5px 5px 15px, var.$button-white-color -10px -10px 10px
+
+
+.main
+    margin-top: 50px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    margin-bottom: 170px
+    gap: 40px
+
+.sec-desc
+    margin: 0 20px
+    padding-right: 20px
+    border-radius: 25px
+    display: flex
+    flex-direction: column
+    box-shadow: var.$shadow-color 10px 10px 15px, var.$button-white-color -10px -10px 10px 
+    position: relative
+
+
+    &_btn
+        all: unset
+        cursor: pointer
+        display: flex
+        gap: 10px
+        
+
+    &_img
+        height: 150px
+
+    &_h2
+        font-size: 20px
+        margin-bottom: 0
+
+    &_div-loc
+        display: flex
+        align-items: center
+        gap: 7px
+
+    &_svg-loc
+        fill: var.$svg-purple-color
+
+    &_p-loc
+        font-size: 12px
+
+    &_p
+        margin-top: 0
+        font-size: 14px
+        color: var.$primary-title-color
+
+    &_btn-like
+        all: unset
+        cursor: pointer
+        display: flex 
+        justify-content: center 
+        align-items: center 
+        border-radius: 50% 
+        width: 25px 
+        height: 25px 
+        position: absolute
+        top: 20px
+        right: 20px
+        box-shadow: var.$shadow-color 10px 10px 15px, var.$button-white-color -10px -10px 10px  
+
+
+    &_svg-like
+        width: 12px
+        fill: var.$svg-grey-color
+
+    
+.filled
+    fill: var.$button-red-color
+
+
+.footer
+    position: fixed
+    bottom: 0
+    width: 100%
+    padding-bottom: 50px
+    border-top-left-radius: 25px
+    border-top-right-radius: 25px
+    box-shadow: var.$button-white-color -10px -10px 10px 
+    background-color: var.$primary-background-color
+
+    &_ul
+        list-style-type: none
+        padding-inline-start: 0
+        display: flex
+        justify-content: space-around
+        margin: 20px
+
+    &_li-btn
+        width: 50px
+        height: 50px
+        display: flex
+        align-items: center
+        justify-content: center
+        border-radius: 50%
+        box-shadow: var.$shadow-color 10px 10px 15px, var.$button-white-color -10px -10px 10px 
+
+    &_li-svg
+        stroke: var.$svg-grey-color 
+        width: 25px
+        height: 25px
+
+    &_li-svg-heart
+        fill: var.$svg-grey-color 
+        width: 25px
+        height: 25px
+
+.btn-use
+    box-shadow: inset var.$shadow-color 2px 2px 5px, var.$button-white-color inset -7px -7px 15px !important
+
+.svg-use
+    stroke: var.$svg-purple-color
+
+
+
