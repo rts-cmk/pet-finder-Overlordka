@@ -29,8 +29,8 @@ export default function DescriptionPage() {
                     <p className="sec-info_svg-loc">{dog?.location}</p>
                 </div>
                 <div className="sec-info_div-type">
-                    <div className="sec-info_div-svg"></div><p>{dog?.breed}</p>
-                    <div className="sec-info_div-svg"></div><p>{dog?.gender}</p>
+                    <div className="sec-info_div-svg"><img src="../public/Pawprint.svg" alt="Pawprint" className="sec-info_svg-type" /></div><p className="sec-info_p-type">{dog?.breed}</p>
+                    <div className="sec-info_div-svg"><img src="../public/sex.svg" alt="Pawprint" className="sec-info_svg-type" /></div><p className="sec-info_p-type up">{dog?.gender}</p>
                 </div>
                 <p className="sec-info_p">{dog?.long_description}</p>
                 <Link to="/home" className="sec-info_link">Back</Link>
