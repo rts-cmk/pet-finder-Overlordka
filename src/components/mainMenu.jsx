@@ -115,7 +115,7 @@ export default function MainMenu() {
                         <li className="footer_li"><Link to="/home" className="footer_li-btn btn-use"><FiHome className="footer_li-svg svg-use" /></Link></li>
                         <li className="footer_li"><Link to="/home" className="footer_li-btn"><LuMessageCircle className="footer_li-svg" /></Link></li>
                         <li className="footer_li"><Link to="/home" className="footer_li-btn"><GoHeart className="footer_li-svg-heart" /></Link></li>
-                        <li className="footer_li"><Link to="/home" className="footer_li-btn"><FiUser className="footer_li-svg" /></Link></li>
+                        <li className="footer_li"><Link to="/profile" className="footer_li-btn"><FiUser className="footer_li-svg" /></Link></li>
                     </ul>
                 </nav>
             </footer>

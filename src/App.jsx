@@ -4,6 +4,7 @@ import WelcomePage from "./components/WelcomePage.jsx"
 import DescriptionPage from "./components/DescriptionPage.jsx"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import "./style/main.sass"
+import Profile from "./components/Profile.jsx"
 
 function App() {
 
@@ -19,6 +20,10 @@ function App() {
     {
       path: '/description/:id',
       element: <DescriptionPage />
+    },
+    {
+      path: '/profile',
+      element: <Profile />,
     }
   ])
 

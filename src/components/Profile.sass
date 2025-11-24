@@ -1,0 +1,24 @@
+@use "../style/variables" as var
+    
+.sec-edit
+    &_form-edit
+        display: flex
+        flex-direction: column
+        gap: 15px
+        padding: 20px 30px 170px 30px
+
+    &_input
+        all: unset
+        padding: 10px
+        border-radius: 10px
+        background-color: var.$button-white-color
+        box-shadow: var.$shadow-color 5px 5px 15px, var.$button-white-color -10px -10px 20px 
+
+    &_btn
+        margin-top: 40px
+
+.txt-short 
+    height: 60px
+
+.txt-long 
+    height: 100px
