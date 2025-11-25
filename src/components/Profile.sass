@@ -1,6 +1,12 @@
 @use "../style/variables" as var
     
 .sec-edit
+    background-color: var.$primary-background-color
+    position: fixed
+    width: 100%
+    top: 0
+    transition: all 0.5 ease
+
     &_form-edit
         display: flex
         flex-direction: column
@@ -15,7 +21,49 @@
         box-shadow: var.$shadow-color 5px 5px 15px, var.$button-white-color -10px -10px 20px 
 
     &_btn
-        margin-top: 40px
+        all: unset
+        cursor: pointer
+        margin-top: 30px 
+        font-weight: 500
+        font-size: 16px
+        text-align: center
+        background-color: var.$button-purple-color
+        color: var.$button-white-color
+        padding: 1.5vh 25vw
+        border-radius: 17vw
+        box-shadow: var.$button-purple-shadow-color 10px 10px 10px, var.$button-white-color -10px -10px 10px 
+
+
+    &_btn-arrow
+        all: unset
+        cursor: pointer
+        margin-top: 30px 
+        font-weight: 500
+        font-size: 16px
+        text-align: center
+        background-color: var.$primary-background-color
+        color: var.$svg-grey-color
+        padding: 1.5vh 1.5vh
+        border-radius: 17vw
+        box-shadow: var.$button-purple-shadow-color 10px 10px 10px, var.$button-white-color -10px -10px 10px
+
+
+    &_controlers
+        display: flex
+        justify-content: space-around
+
+
+.sec-edit.fold-out 
+    animation: foldUp 1s ease forwards
+    
+
+
+@keyframes foldUp
+    from 
+        top: 0 
+    to  
+        top: -100vh 
+        
 
 .txt-short 
     height: 60px

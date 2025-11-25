@@ -1,34 +1,149 @@
-
+import { FaLocationDot } from "react-icons/fa6"
+import { IoIosArrowDown } from "react-icons/io"
+import { LuBell } from "react-icons/lu"
+import { SlLocationPin } from "react-icons/sl"
 import { GoHeart } from "react-icons/go"
+import { GoHeartFill } from "react-icons/go"
 import { FiHome } from "react-icons/fi"
 import { LuMessageCircle } from "react-icons/lu"
 import { FiUser } from "react-icons/fi"
-import { Link } from "react-router-dom"
+import { FaArrowTurnUp } from "react-icons/fa6"
+import { Link, useNavigate } from "react-router-dom"
+import api from "../fetch/api"
 import "./Profile.sass"
+import { useEffect, useState } from "react"
 
 export default function Profile() {
 
-    function formHandle(event){
+    const [foldOut, setFoldOut] = useState(false)
+
+    const navigate = useNavigate()
+
+    const [user, setUser] = useState(null)
+    const [dogs, setDogs] = useState([])
+    const [likedDogs, setLikedDogs] = useState({});
+
+
+    useEffect(() => {
+        async function loadData() {
+            const userData = await api("/user")
+            const dogsData = await api("/dogs")
+            console.log(userData)
+            console.log(dogsData)
+
+            setUser(userData)
+            setDogs(dogsData)
+
+        }
+
+        loadData()
+    }, [])
+
+    function toggleLike(id) {
+        setLikedDogs(prev => ({
+            ...prev,
+            [id]: !prev[id]
+        }));
+    }
+
+
+    function formHandle(event) {
         event.preventDefault()
 
+        const formData = new FormData(event.target)
+
+        const data = Object.fromEntries(formData)
+
+        console.log(data)
+
+    }
+
+    function foldUp() {
+        setFoldOut(true)
     }
 
 
     return (
         <>
-            <section className="sec-edit">
+            <header className="header-main">
+                <section className="header-main_sec">
+                    <div className="header-main_div">
+                        <button className="header-main_btn-img" >
+                            <div className="header-main_corrector">
+                                <img src={user?.image} alt="user" className="header-main_img" />
+                            </div>
+                        </button>
+                        <div className="header-main_location">
+                            <FaLocationDot className="header-main_location-svg" />
+                            <p className="header-main_p">{user?.location}</p>
+                            <button className="header-main_fold-out-btn">
+                                <IoIosArrowDown className="header-main_fold-svg" />
+                            </button>
+                        </div>
+                    </div>
+                    <button className="header-main_bell-btn">
+                        <LuBell className="header-main_bell-svg" />
+                    </button>
+                </section>
+                <nav>
+                    <ul className="header-main_ul" >
+                        <li className="header-main_li" ><button className="header-main_li-btn-ctgrs">Cats</button> </li>
+                        <li className="header-main_li" ><button className="header-main_li-btn-ctgrs">Dogs</button> </li>
+                        <li className="header-main_li" ><button className="header-main_li-btn-ctgrs">Birds</button> </li>
+                        <li className="header-main_li" ><button className="header-main_li-btn-ctgrs">Other</button> </li>
+                    </ul>
+                </nav>
+            </header>
+            <main className="main">
+                {dogs.map(dog => {
+                    const isLiked = likedDogs[dog.id] || false
+
+                    return (
+                        <section className="sec-desc" key={dog.id}>
+                            <button className="sec-desc_btn" onClick={() => navigate(`/description/${dog.id}`)}>
+                                <img className="sec-desc_img" src={dog.image} alt={dog.breed} />
+                                <article className="sec-desc_art">
+                                    <h2 className="sec-desc_h2">{dog.breed}</h2>
+                                    <div className="sec-desc_div-loc">
+                                        <SlLocationPin className="sec-desc_svg-loc" />
+                                        <p className="sec-desc_p-loc">{dog.location}</p>
+                                    </div>
+                                    <p className="sec-desc_p">{dog.short_description}</p>
+                                </article>
+                            </button>
+
+                            <button
+                                className={`sec-desc_btn-like ${isLiked ? "liked" : ""}`}
+                                onClick={() => toggleLike(dog.id)}
+                            >
+                                {isLiked ? (
+                                    <GoHeartFill className="sec-desc_svg-like filled" />
+                                ) : (
+                                    <GoHeart className="sec-desc_svg-like" />
+                                )}
+                            </button>
+                        </section>
+                    );
+                })}
+
+
+            </main>
+            <section className={`sec-edit ${foldOut ? "fold-out" : ""} `}>
                 <form className="sec-edit_form-edit" onSubmit={formHandle}>
                     <label htmlFor="breed" className="sec-edit_label">Breed</label>
-                    <input id="breed" type="text" className="sec-edit_input" placeholder="Breed" />
+                    <input name="breed" id="breed" type="text" className="sec-edit_input" placeholder="Enter breed" />
                     <label htmlFor="gender" className="sec-edit_label">Gender</label>
-                    <input id="gender" type="text" className="sec-edit_input" placeholder="Gender" />
+                    <input name="gender" id="gender" type="text" className="sec-edit_input" placeholder="Enter gender" />
                     <label htmlFor="location" className="sec-edit_label">Location</label>
-                    <input id="location" type="text" className="sec-edit_input" placeholder="Location" />
+                    <input name="location" id="location" type="text" className="sec-edit_input" placeholder="Enter location" />
                     <label htmlFor="short_description" className="sec-edit_label">Short description</label>
-                    <textarea id="short_description" type="text" className="sec-edit_input txt-short" placeholder="Short description" />
+                    <textarea name="short_description" id="short_description" type="text" className="sec-edit_input txt-short" placeholder="Enter short description" />
                     <label htmlFor="long_description" className="sec-edit_label">Long description</label>
-                    <textarea id="long_description" type="text" className="sec-edit_input txt-long" placeholder="Long description" />
-                    <button className="sec-info_link sec-edit_btn">Create</button>
+                    <textarea name="long_description" id="long_description" type="text" className="sec-edit_input txt-long" placeholder="Enter long description" />
+                    <div className="sec-edit_controlers">
+                        <button className="sec-edit_btn">Create</button>
+                        <button className="sec-edit_btn-arrow" onClick={foldUp}><FaArrowTurnUp /></button>
+                    </div>
                 </form>
             </section>
             <footer className="footer">
