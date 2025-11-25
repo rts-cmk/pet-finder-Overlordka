@@ -1,9 +1,10 @@
+import { FaPlus } from "react-icons/fa6"
 import { FaLocationDot } from "react-icons/fa6"
 import { IoIosArrowDown } from "react-icons/io"
 import { LuBell } from "react-icons/lu"
 import { SlLocationPin } from "react-icons/sl"
 import { GoHeart } from "react-icons/go"
-import { GoHeartFill } from "react-icons/go"
+import { MdDeleteOutline } from "react-icons/md"
 import { FiHome } from "react-icons/fi"
 import { LuMessageCircle } from "react-icons/lu"
 import { FiUser } from "react-icons/fi"
@@ -21,45 +22,57 @@ export default function Profile() {
 
     const [user, setUser] = useState(null)
     const [dogs, setDogs] = useState([])
-    const [likedDogs, setLikedDogs] = useState({});
 
+    async function loadData() {
+        const userData = await api("/user")
+        const dogsData = await api("/dogs")
+        console.log(userData)
+        console.log(dogsData)
 
-    useEffect(() => {
-        async function loadData() {
-            const userData = await api("/user")
-            const dogsData = await api("/dogs")
-            console.log(userData)
-            console.log(dogsData)
+        setUser(userData)
+        setDogs(dogsData)
 
-            setUser(userData)
-            setDogs(dogsData)
+    }
 
-        }
+    async function deleteBtn(id) {
+        await fetch(`http://localhost:4000/dogs/${id}`, {
+            method: "DELETE"
+        })
 
-        loadData()
-    }, [])
-
-    function toggleLike(id) {
-        setLikedDogs(prev => ({
-            ...prev,
-            [id]: !prev[id]
-        }));
+        await loadData()
     }
 
 
-    function formHandle(event) {
-        event.preventDefault()
+    function createData(event) {
+        const form = event.target.closest("form")
 
-        const formData = new FormData(event.target)
+        const formData = new FormData(form)
 
-        const data = Object.fromEntries(formData)
+        // const data = Object.fromEntries(formData)
+
+        const data = {
+            "image": formData.get("image"),
+            "breed": formData.get("breed"),
+            "gender": formData.get("gender"),
+            "location": formData.get("location"),
+            "short_description": formData.get("short_description"),
+            "long_description": formData.get("long_description"),
+        }
 
         console.log(data)
 
+        fetch("http://localhost:4000/dogs", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => console.log("API response", response))
     }
 
     function foldUp() {
         setFoldOut(true)
+        loadData()
     }
 
 
@@ -82,7 +95,7 @@ export default function Profile() {
                         </div>
                     </div>
                     <button className="header-main_bell-btn">
-                        <LuBell className="header-main_bell-svg" />
+                        <FaPlus className="header-main_bell-svg" />
                     </button>
                 </section>
                 <nav>
@@ -96,7 +109,6 @@ export default function Profile() {
             </header>
             <main className="main">
                 {dogs.map(dog => {
-                    const isLiked = likedDogs[dog.id] || false
 
                     return (
                         <section className="sec-desc" key={dog.id}>
@@ -112,15 +124,8 @@ export default function Profile() {
                                 </article>
                             </button>
 
-                            <button
-                                className={`sec-desc_btn-like ${isLiked ? "liked" : ""}`}
-                                onClick={() => toggleLike(dog.id)}
-                            >
-                                {isLiked ? (
-                                    <GoHeartFill className="sec-desc_svg-like filled" />
-                                ) : (
-                                    <GoHeart className="sec-desc_svg-like" />
-                                )}
+                            <button className="sec-desc_btn-like" onClick={() => deleteBtn(dog.id)}>
+                                <MdDeleteOutline className="trash" />
                             </button>
                         </section>
                     );
@@ -129,7 +134,9 @@ export default function Profile() {
 
             </main>
             <section className={`sec-edit ${foldOut ? "fold-out" : ""} `}>
-                <form className="sec-edit_form-edit" onSubmit={formHandle}>
+                <form className="sec-edit_form-edit">
+                    <label htmlFor="image" className="sec-edit_label">Image</label>
+                    <input name="image" id="image" type="text" className="sec-edit_input" placeholder="Enter image URL" />
                     <label htmlFor="breed" className="sec-edit_label">Breed</label>
                     <input name="breed" id="breed" type="text" className="sec-edit_input" placeholder="Enter breed" />
                     <label htmlFor="gender" className="sec-edit_label">Gender</label>
@@ -141,8 +148,8 @@ export default function Profile() {
                     <label htmlFor="long_description" className="sec-edit_label">Long description</label>
                     <textarea name="long_description" id="long_description" type="text" className="sec-edit_input txt-long" placeholder="Enter long description" />
                     <div className="sec-edit_controlers">
-                        <button className="sec-edit_btn">Create</button>
-                        <button className="sec-edit_btn-arrow" onClick={foldUp}><FaArrowTurnUp /></button>
+                        <button type="button" className="sec-edit_btn" onClick={createData}>Create</button>
+                        <button type="button" className="sec-edit_btn-arrow" onClick={foldUp}><FaArrowTurnUp /></button>
                     </div>
                 </form>
             </section>
